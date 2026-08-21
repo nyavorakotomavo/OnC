@@ -1,19 +1,45 @@
+```gitignore
+# Dependencies
 __pycache__/
 *.pyc
 *.pyo
+*.pyd
+
+# Environment variables
 .env
+.env.local
+*.env.*
 
-# Archives de téléchargement de polices (ré-téléchargées à la volée)
-assets/fonts/*.zip
+# Logs
+*.log
 
-# Artéfacts de génération vis (fichiers temporaires)
-vis_slide_*.png
-vis_texte.png
+# Coverage reports
+.coverage
+coverage/
+htmlcov/
 
-# Historique des publications (auto-commité par le script)
-# Ne pas ignorer : on veut le versionner
-!published_history.json
-cf_test.py
-fix_cf.py
-fix_prompt.py
-vis_*.png
+# Temporary files
+*.tmp
+*.swp
+*.swo
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+
+# Testing
+.pytest_cache/
+.mypy_cache/
+.tox/
+
+# Virtual environments
+venv/
+.venv/
+env/
+ENV/
+```

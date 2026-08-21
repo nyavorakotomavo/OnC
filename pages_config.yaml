@@ -1,0 +1,32 @@
+# Nyavodroid — Configuration Multi-Pages Facebook
+# Ajoute autant de pages que tu veux ici
+# 
+# Pour chaque page, tu as besoin de :
+#   - id: L'ID Facebook de la page (ex: 123456789012345)
+#   - token: Token d'accès avec permissions publish_pages, manage_pages
+#   - brand: La marque associée (nyavo, vis, etc.)
+#
+# Comment obtenir le token :
+#   1. Va sur https://developers.facebook.com/tools/explorer
+#   2. Sélectionne ta Page dans "Page Access Token"
+#   3. Copie le token généré
+#   4. Colle-le ci-dessous entre guillemets
+
+pages:
+  # Page NYAVO TECH
+  - id: "${FB_PAGE_ID_NYAVO}"
+    token: "${FB_PAGE_ACCESS_TOKEN_NYAVO}"
+    brand: "nyavo"
+    active: true
+
+  # Page VIS MOTIVATION
+  - id: "${FB_PAGE_ID_VIS}"
+    token: "${FB_PAGE_ACCESS_TOKEN_VIS}"
+    brand: "vis"
+    active: true
+
+  # Exemple pour une future page (décommente et remplis)
+  # - id: "123456789012345"
+  #   token: "EAABsbCS1iHgBO7ZCxqQZBZAzLZC..."
+  #   brand: "nyavo"
+  #   active: false
