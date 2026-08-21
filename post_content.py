@@ -2,6 +2,10 @@
 """
 Nyavodroid — publication multi-formats (texte / image+texte / Reel).
 Intégration Pexels vs IA, rendu texte Pillow (lisibilité garantie), watermark double.
+
+Ce script peut être :
+  1. Exécuté directement : python post_content.py (publication sur une page via ENV)
+  2. Importé comme module : from post_content import publier_contenu (pour multi-pages)
 """
 
 import os
@@ -509,6 +513,7 @@ def publier_reel(pilier: str) -> dict:
 #  MAIN
 # ══════════════════════════════════════════════
 def main() -> None:
+    """Fonction principale - exécution directe du script"""
     print("=" * 60)
     print("🎬 Nyavodroid — Multi-formats [Premium]")
     print("=" * 60)
@@ -525,6 +530,33 @@ def main() -> None:
     else:
         res = publier_reel(pilier)
     print(f"\n{'='*60}\n✅ TERMINÉ — {labels[tc]}\n   ID : {res.get('id', res.get('video_id','N/A'))}\n{'='*60}")
+
+
+def publier_contenu(force_format: str = None) -> dict:
+    """
+    Fonction exportable pour publication programmatique (multi-pages)
+    
+    Args:
+        force_format: Format imposé (optionnel)
+    
+    Returns:
+        Résultat de la publication (dict avec id)
+    """
+    M.verify_fb_token()
+    tc = choisir_type_contenu() if not force_format else force_format
+    pilier = choisir_pilier()
+    labels = {"texte_seul": "Post Texte", "image_texte": "Post Image+Texte", "reel": "Reel"}
+    
+    print(f"\n{'='*60}\n🚀 PUBLICATION\n   Format : {labels[tc]}\n   Pilier : {PILLARS[pilier]['label']}"
+          f"\n📌 Heure  : {datetime.now(timezone.utc).strftime('%H:%M UTC')}\n")
+    if tc == "texte_seul":
+        res = publier_texte_seul(pilier)
+    elif tc == "image_texte":
+        res = publier_image_texte(pilier)
+    else:
+        res = publier_reel(pilier)
+    print(f"\n{'='*60}\n✅ TERMINÉ — {labels[tc]}\n   ID : {res.get('id', res.get('video_id','N/A'))}\n{'='*60}")
+    return res
 
 
 if __name__ == "__main__":
